@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./update-patient.component.css']
 })
 export class UpdatePatientComponent implements OnInit {
-  patient!: Patient;
+  patient: Patient = new Patient();
   id!: number;
   constructor(
     private patientService: PatientService,
@@ -17,7 +17,6 @@ export class UpdatePatientComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.patient = new Patient();
     this.id = this.route.snapshot.params['id'];
     this.getPatientById(this.id);
   }
@@ -36,7 +35,7 @@ export class UpdatePatientComponent implements OnInit {
       .subscribe({
         next: data => {
           console.log(data);
-          this.patient = new Patient();
+          this.goToList();
         },
 
         error: error => console.log(error)
@@ -49,6 +48,5 @@ export class UpdatePatientComponent implements OnInit {
 
   onSubmit() {
     this.updatePatient();
-    this.goToList();
   }
 }

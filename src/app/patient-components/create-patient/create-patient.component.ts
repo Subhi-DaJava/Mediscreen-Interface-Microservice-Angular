@@ -26,28 +26,28 @@ export class CreatePatientComponent implements OnInit {
     this.invalidPhoneNumber = !pattern.test(this.patient.phoneNumber);
   }
   addPatient() {
-    if(!this.patient.firstName 
-      || !this.patient.lastName 
-      || !this.patient.dateOfBirth 
+    if (!this.patient.firstName
+      || !this.patient.lastName
+      || !this.patient.dateOfBirth
       || !this.patient.homeAddress
       || !this.patient.sex) {
-        this.errorMessage = 'Field should not be empty.'
-        return;
-      }
+      this.errorMessage = 'Field should not be empty.'
+      return;
+    }
     this.validatePhoneNumber();
 
     if (this.invalidPhoneNumber) {
       return;
     }
-    
+
     this.patientService.createPatient(this.patient).subscribe({
       next: data => {
         console.log(data);
         this.goToPatientList();
       },
       error: error => {
-        console.log(error);
-        //this.errorMessage = error;
+        console.log(error.error);
+        this.errorMessage = error.error;
       }
     });
   }

@@ -22,8 +22,13 @@ export class PatientListComponent implements OnInit {
   }
 
   private getPatientList() {
-    this.patientService.getPatientList().subscribe(data => {
-      this.patients = data;
+    this.patientService.getPatientList().subscribe({
+      next: data => {
+        this.patients = data;
+      },
+      error: err => {
+        console.log(err);
+      }
     });
   }
 
@@ -33,10 +38,14 @@ export class PatientListComponent implements OnInit {
 
   deletePatient(id: number) {
     this.patientService.deleteById(id).subscribe({
-      next: data => console.log(data),
-      error: error => console.log(error),
+      next: data => {
+        console.log(data);
+        this.getPatientList();
+     },
+     error: error => {
+      console.log(error);}
     });
-    this.getPatientList();
+    
   }
 
   showPatientDetails(id: number) {
@@ -54,7 +63,7 @@ export class PatientListComponent implements OnInit {
       },
       error: error => {
         console.log('Error while searching for patient by last name:', error);
-        this.errorMessage = `No patient exists in DB with this last name :{${this.searchLastName}}`;
+        this.errorMessage = `No patient exists in the database with this last name :{${this.searchLastName}}`;
       }
     });
   }

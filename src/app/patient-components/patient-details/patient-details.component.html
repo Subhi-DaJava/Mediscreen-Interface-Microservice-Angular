@@ -3,15 +3,54 @@
         <h2>Patient Informations</h2>
     </div>
     <div class="card-body fs-5">
-        <div><label>First Name:</label><b style="padding-left: 10px;">{{patient.firstName}}</b></div>
-        <div><label>Last Name:</label><b style="padding-left: 10px;">{{patient.lastName}}</b></div>
-        <div><label>Date Of Birth :</label><b style="padding-left: 10px;">{{patient.dateOfBirth}}</b></div>
-        <div><label>Gender:</label><b style="padding-left: 10px;">{{patient.sex}}</b></div>
-        <div><label>Phone Number:</label><b style="padding-left: 10px;">{{patient.phoneNumber}}</b></div>
-        <div><label>Home Address:</label><b style="padding-left: 10px;">{{patient.homeAddress}}</b></div>
-        <div class="mt-3 text text-center">
-            <button class="btn btn-info" [routerLink]="['/update-patient', patient.id]">Update</button>
-            <button class="btn btn-danger mx-2" (click)="deletePatientById(patient.id)">Delete</button>
+        <div>
+            <div>
+                <div><label>Patient ID:</label><b style="padding-left: 10px;">{{patient.id}}</b></div>
+                <div><label>First Name:</label><b style="padding-left: 10px;">{{patient.firstName}}</b></div>
+                <div><label>Last Name:</label><b style="padding-left: 10px;">{{patient.lastName}}</b></div>
+                <div><label>Date Of Birth :</label><b style="padding-left: 10px;">{{patient.dateOfBirth}}</b></div>
+                <div><label>Gender:</label><b style="padding-left: 10px;">{{patient.sex}}</b></div>
+                <div><label>Phone Number:</label><b style="padding-left: 10px;">{{patient.phoneNumber}}</b></div>
+                <div><label>Home Address:</label><b style="padding-left: 10px;">{{patient.homeAddress}}</b></div>
+                <div class="mt-3 text text-center">
+                    <button class="btn btn-info" [routerLink]="['/update-patient', patient.id]">Update</button>
+                    <button class="btn btn-danger mx-2" (click)="deletePatientById(patient.id)">Delete</button>
+                </div>
+            </div>
+
+            <div>
+                <h2>Practitioner Notes</h2>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Notes</th>
+                            <th>Date</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let note of notes">
+                            <td>{{note.comment}}</td>
+                            <td>{{note.createdAt }}</td>
+                            <td>
+                                <button (click)="updateNoteById(note.id)" class="btn btn-info"
+                                    style="margin-left: 3px;">Update</button>
+                            </td>
+                            <td>
+                                <button (click)="deleteNoteById(note.id)" class="btn btn-danger"
+                                    style="margin-left: 3px;">Delete</button>
+                            </td>
+                            <td>
+                                <button (click)="addNote()" class="btn btn-success"
+                                    style="margin-left: 3px;">Add Note</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div *ngIf="errorMessage" class="alert alert-danger">
+                <h3>{{ errorMessage }}</h3>
+            </div>
         </div>
     </div>
 </div>
