@@ -13,6 +13,7 @@ import { CreateNoteComponent } from './note-components/create-note/create-note.c
 import { UpdateNoteComponent } from './note-components/update-note/update-note.component';
 import { NoteDetailsLastnameComponent } from './note-components/note-details-lastname/note-details-lastname.component';
 import { NoteDetailsPatidComponent } from './note-components/note-details-patid/note-details-patid.component';
+import { AddNoteToPatientComponent } from './note-components/add-note-to-patient/add-note-to-patient.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { NoteDetailsPatidComponent } from './note-components/note-details-patid/
     CreateNoteComponent,
     UpdateNoteComponent,
     NoteDetailsPatidComponent,
-    NoteDetailsLastnameComponent
+    NoteDetailsLastnameComponent,
+    AddNoteToPatientComponent
   ],
   imports: [
     BrowserModule,

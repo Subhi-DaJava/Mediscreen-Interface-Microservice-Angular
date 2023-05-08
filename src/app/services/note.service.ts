@@ -45,6 +45,6 @@ export class NoteService {
   }
 
   addNoteToPatientByPatId(patId: number, note: string): Observable<Note> {
-    return this.http.post<Note>(`${this.apiUrl}/${patId}`, { note: note });
+    return this.http.post<Note>(`${this.apiUrl}/${patId}?note=${note}`, {});
   }
 }

@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <div>
+            <div *ngIf="notes">
                 <h2>Practitioner Notes</h2>
                 <table class="table table-striped">
                     <thead>
@@ -36,18 +36,20 @@
                                 <button (click)="updateNoteById(note.id)" class="btn btn-info"
                                     style="margin-left: 3px;">Update</button>
                             </td>
+                          <td *ngIf="errorMessage"> {{errorMessage}}</td>
                             <td>
                                 <button (click)="deleteNoteById(note.id)" class="btn btn-danger"
                                     style="margin-left: 3px;">Delete</button>
-                            </td>
-                            <td>
-                                <button (click)="addNote()" class="btn btn-success"
-                                    style="margin-left: 3px;">Add Note</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+            <div>
+                <button (click)="addNote()" class="btn btn-success">Add Note</button>
+            </div>
+
             <div *ngIf="errorMessage" class="alert alert-danger">
                 <h3>{{ errorMessage }}</h3>
             </div>

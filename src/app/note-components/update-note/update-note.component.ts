@@ -1,5 +1,5 @@
 import { NoteService } from 'src/app/services/note.service';
-import { Note } from './../../model/note';
+import { Note } from '../../model/note';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -25,9 +25,9 @@ export class UpdateNoteComponent implements OnInit {
 
   getNoteById(id: string) {
     this.noteService.getNoteById(id).subscribe({
-      next: noteRetrivedById => {
-        this.note = noteRetrivedById;
-        console.log(noteRetrivedById);
+      next: noteRetriedById => {
+        this.note = noteRetriedById;
+        console.log(noteRetriedById);
       },
       error: err => {
         console.log(err);
@@ -39,8 +39,9 @@ export class UpdateNoteComponent implements OnInit {
     this.noteService.updateNoteById(this.id, this.note).subscribe({
       next: noteUpdated => {
         console.log(noteUpdated);
-        this.goToNoteList();
-      }, 
+        this.router.navigate(['/patient-details', noteUpdated.patId]).then();
+        //this.goToNoteList();
+      },
       error: err => {
         console.log(err);
       }

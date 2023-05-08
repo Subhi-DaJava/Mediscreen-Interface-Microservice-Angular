@@ -45,11 +45,11 @@ export class PatientListComponent implements OnInit {
      error: error => {
       console.log(error);}
     });
-    
+
   }
 
   showPatientDetails(id: number) {
-    this.router.navigate(['patient-details', id]);
+    this.router.navigate(['patient-details', id]).then();
   }
 
   searchPatientByLastName() {
@@ -59,7 +59,7 @@ export class PatientListComponent implements OnInit {
     }
     this.patientService.getPatientByLastName(this.searchLastName).subscribe({
       next: patient => {
-        this.router.navigate(['/patient-details', patient.id])
+        this.router.navigate(['/patient-details', patient.id]).then()
       },
       error: error => {
         console.log('Error while searching for patient by last name:', error);

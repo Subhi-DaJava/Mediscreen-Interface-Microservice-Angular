@@ -40,7 +40,9 @@
         <div *ngIf="errorMessage" class="alert alert-danger">
             {{ errorMessage }}
         </div>
-
+        <div *ngIf="errorObject">
+          {{errorObject}}
+        </div>
         <button class="btn btn-success create-button" type="submit">Save New Patient</button>
     </form>
 </div>

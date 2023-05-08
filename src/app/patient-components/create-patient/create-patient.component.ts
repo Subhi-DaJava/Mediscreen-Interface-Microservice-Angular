@@ -12,6 +12,7 @@ export class CreatePatientComponent implements OnInit {
 
   patient: Patient = new Patient();
   errorMessage: string = '';
+  errorObject!: Object;
   invalidPhoneNumber = false;
 
   constructor(
@@ -46,14 +47,15 @@ export class CreatePatientComponent implements OnInit {
         this.goToPatientList();
       },
       error: error => {
-        console.log(error.error);
-        this.errorMessage = error.error;
+        console.log(error);
+        this.errorObject = error;
+       // this.errorMessage = error.ERROR.toString();
       }
     });
   }
 
   goToPatientList() {
-    this.router.navigate(['/patients'])
+    this.router.navigate(['/patients']).then()
   }
 
   onSubmit() {
