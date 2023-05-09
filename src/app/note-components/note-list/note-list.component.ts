@@ -33,7 +33,7 @@ export class NoteListComponent implements OnInit {
   }
 
   updateNoteById(id: string) {
-    this.router.navigate(['/update-note', id]);
+    this.router.navigate(['/update-note', id]).then();
   }
 
   deleteNoteById(id: string) {
@@ -56,7 +56,7 @@ export class NoteListComponent implements OnInit {
     this.noteService.getNotesByLastName(this.searchByLastName).subscribe({
       next: data => {
         if (data && data.length > 0) {
-          this.router.navigate(['/note-details-lastname', this.searchByLastName]);
+          this.router.navigate(['/note-details-lastname', this.searchByLastName]).then();
         } else {
           this.errorMessageLastName = `No Note exists in the database with this last name: {${this.searchByLastName}}`;
         }
@@ -64,6 +64,7 @@ export class NoteListComponent implements OnInit {
       },
       error: err => {
         console.log('Error while searching for patient by Last Name: ', err);
+        this.errorMessageLastName = err.error.message;
       }
     });
 
@@ -83,13 +84,14 @@ export class NoteListComponent implements OnInit {
     this.noteService.getNotesByPatId(this.searchByPatientId).subscribe({
       next: data => {
         if (data && data.length > 0) {
-          this.router.navigate(['/note-details-patid', this.searchByPatientId])
+          this.router.navigate(['/note-details-patid', this.searchByPatientId]).then();
         } else {
           this.errorMessagePatid = `No Note exists in the database with this patient id: {${this.searchByPatientId}}`;
         }
       },
       error: err => {
         console.log('Error while searching for patient by Last Name: ', err);
+        this.errorMessagePatid = err.error.message;
       }
     });
   }

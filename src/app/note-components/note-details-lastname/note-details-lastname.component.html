@@ -4,7 +4,7 @@
         <tr>
             <th>Patient ID</th>
             <th>LastName</th>
-            <th>Docter Notes</th>
+            <th>Doctor Notes</th>
             <th>Date</th>
             <th>Actions</th>
         </tr>
@@ -21,7 +21,12 @@
             <td>
                 <button (click)="deleteNoteById(note.id)" class="btn btn-danger" style="margin-left: 3px;">Delete</button>
             </td>
-            
+
         </tr>
     </tbody>
 </table>
+
+
+<div *ngIf="errorMessage" class="alert alert-danger text-danger mt-2 fs-5">
+  {{ errorMessage }}
+</div>

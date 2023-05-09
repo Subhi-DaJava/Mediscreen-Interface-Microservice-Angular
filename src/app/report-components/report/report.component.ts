@@ -11,7 +11,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 export class ReportComponent implements OnInit {
   report!: Report
   patId!: number;
-  private errorMessage: any;
+  errorMessage!: string;
 
   constructor(
     private reportService: ReportService,
@@ -33,7 +33,7 @@ export class ReportComponent implements OnInit {
       },
       error: err => {
         console.log(err);
-        this.errorMessage = err;
+        this.errorMessage = err.error.message;
       }
     })
   }

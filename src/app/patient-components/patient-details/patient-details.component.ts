@@ -51,6 +51,7 @@ export class PatientDetailsComponent implements OnInit {
       },
       error: error => {
         console.log(error);
+        this.errorMessage = error.error.message;
       }
     });
   }
@@ -62,7 +63,7 @@ export class PatientDetailsComponent implements OnInit {
       },
       error: err => {
         console.log(err);
-        this.errorMessage = err.error;
+        this.errorMessage = err.error.message;
       }
     })
   }
@@ -80,13 +81,25 @@ export class PatientDetailsComponent implements OnInit {
       },
       error: err => {
         console.log(err);
-        this.errorMessage = err.toString();
+        this.errorMessage = err.error.message;
       }
     });
   }
 
   addNote() {
-    this.router.navigate(['/add-node-to-patient', this.id]).then();
+    this.noteService.getNotesByPatId(this.id).subscribe({
+      next: patientNotes => {
+        if (patientNotes.length === 0) {
+          this.router.navigate(['/create-note-by-pat-id', this.id]).then();
+        } else {
+          this.router.navigate(['/add-node-to-patient', this.id]).then();
+        }
+      },
+    error: err => {
+        console.log(err);
+        this.errorMessage = err.error.message;
+      }
+    });
   }
 
   goToPatientDetails(patientId: number) {

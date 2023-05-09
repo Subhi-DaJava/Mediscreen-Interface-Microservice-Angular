@@ -11,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateNoteComponent implements OnInit {
   note: Note = new Note();
   id!: string;
+  errorMessage!: string;
+  errorMessages!: string[];
 
   constructor(
     private noteService: NoteService,
@@ -44,13 +46,15 @@ export class UpdateNoteComponent implements OnInit {
       },
       error: err => {
         console.log(err);
+        this.errorMessage = err.error.message;
+        this.errorMessages = err.error.errors ? err.error.errors : 'An error occurred while validating the form';
       }
     });
 
   }
 
   goToNoteList(){
-    this.router.navigate(['/note-list']);
+    this.router.navigate(['/note-list']).then();
   }
 
 }

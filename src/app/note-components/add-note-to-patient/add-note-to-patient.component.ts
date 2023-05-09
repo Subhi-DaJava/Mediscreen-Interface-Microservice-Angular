@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Note } from 'src/app/model/note';
-import { NoteService } from 'src/app/services/note.service';
-import { PatientService } from 'src/app/services/patient.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Note} from 'src/app/model/note';
+import {NoteService} from 'src/app/services/note.service';
+import {PatientService} from 'src/app/services/patient.service';
+import {Patient} from "../../model/patient";
 
 @Component({
   selector: 'app-add-note-to-patient',
   templateUrl: './add-note-to-patient.component.html',
   styleUrls: ['./add-note-to-patient.component.css']
 })
-export class AddNoteToPatientComponent implements OnInit{
+export class AddNoteToPatientComponent implements OnInit {
   comment!: string;
   patid!: number;
   notes!: Note[];
@@ -19,11 +20,28 @@ export class AddNoteToPatientComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private noteService: NoteService) {}
+    private noteService: NoteService) {
+  }
 
   ngOnInit(): void {
     this.patid = this.route.snapshot.params['patid'];
     this.getNotesByPatId(this.patid);
+  }
+
+  addNewCommentToPatient(patientId: number, doctorComment: string) {
+
+    this.noteService.addNoteToPatientByPatId(patientId, doctorComment).subscribe({
+      next: noteByPatId => {
+        this.note = noteByPatId;
+        console.log(noteByPatId);
+        this.goToPatientDetails();
+      },
+      error: err => {
+        console.log(err);
+        this.errorMessage = err.error.message;
+      }
+    });
+
   }
 
   getNotesByPatId(patientId: number) {
@@ -40,24 +58,12 @@ export class AddNoteToPatientComponent implements OnInit{
     })
   }
 
-  addNewCommentToPatient(patientId:number, doctorComment: string) {
-    this.noteService.addNoteToPatientByPatId(patientId, doctorComment).subscribe({
-      next: noteByPatId => {
-        this.note = noteByPatId;
-        console.log(noteByPatId);
-        this.goToPatientDetails();
-      },
-      error: err => {
-        console.log(err);
-      }
-    })
-  }
-
   goToPatientDetails() {
     this.router.navigate(['/patient-details', this.patid]).then();
   }
+
   ngSubmit() {
-    if(!this.comment) {
+    if (!this.comment) {
       this.errorMessage = "Should not be empty";
       return;
     }

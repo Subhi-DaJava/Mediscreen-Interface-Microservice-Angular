@@ -1,4 +1,4 @@
-import { Note } from './../model/note';
+import { Note } from '../model/note';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,11 +7,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NoteService {
- 
+
   getPatientByLastName(searchByLastName: string) {
     throw new Error('Method not implemented.');
   }
- 
+
   private apiUrl: string = 'http://localhost:8082/api/notes';
 
   constructor(private http: HttpClient) { }

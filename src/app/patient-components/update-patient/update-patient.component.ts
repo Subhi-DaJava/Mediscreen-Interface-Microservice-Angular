@@ -11,6 +11,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdatePatientComponent implements OnInit {
   patient: Patient = new Patient();
   id!: number;
+  errorMessage!: string;
+  errorMessages!: string;
   constructor(
     private patientService: PatientService,
     private route: ActivatedRoute,
@@ -26,7 +28,10 @@ export class UpdatePatientComponent implements OnInit {
       next: data => {
         this.patient = data;
       },
-      error: error => console.log(error)
+      error: error => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+      }
     });
   }
 
@@ -37,13 +42,16 @@ export class UpdatePatientComponent implements OnInit {
           console.log(data);
           this.goToList();
         },
-
-        error: error => console.log(error)
+        error: error => {
+          console.log(error);
+          this.errorMessage = error.error.message;
+          this.errorMessages = error.error.errors ? error.error.errors : 'An error occurred while validating the form';
+        }
       });
   }
 
   goToList() {
-    this.router.navigate(['/patients']);
+    this.router.navigate(['/patients']).then();
   }
 
   onSubmit() {

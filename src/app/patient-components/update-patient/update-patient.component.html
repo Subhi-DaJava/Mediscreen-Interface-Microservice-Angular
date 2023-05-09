@@ -34,7 +34,12 @@
             <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="patient.phoneNumber"
                 name="phoneNumber">
         </div>
-
+      <div *ngIf="errorMessage" class="alert alert-danger text-danger mt-2 fs-5">
+        {{ errorMessage }}
+      </div>
+      <div class="alert alert-danger text-danger mt-2 fs-5" *ngFor="let mgs of errorMessages">
+        <div>{{mgs}}</div>
+      </div>
         <button class="btn btn-success create-button" type="submit">Update Patient</button>
     </form>
 

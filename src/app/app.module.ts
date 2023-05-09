@@ -15,6 +15,7 @@ import { NoteDetailsLastnameComponent } from './note-components/note-details-las
 import { NoteDetailsPatidComponent } from './note-components/note-details-patid/note-details-patid.component';
 import { AddNoteToPatientComponent } from './note-components/add-note-to-patient/add-note-to-patient.component';
 import { ReportComponent } from './report-components/report/report.component';
+import {CreateNoteByPatIdComponent} from "./note-components/create-note-by-pat-id/create-note-by-pat-id.component";
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ReportComponent } from './report-components/report/report.component';
     NoteDetailsPatidComponent,
     NoteDetailsLastnameComponent,
     AddNoteToPatientComponent,
-    ReportComponent
+    ReportComponent,
+    CreateNoteByPatIdComponent
   ],
   imports: [
     BrowserModule,

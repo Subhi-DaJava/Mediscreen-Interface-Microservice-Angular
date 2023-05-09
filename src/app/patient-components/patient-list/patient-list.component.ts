@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Patient } from '../../model/patient';
-import { PatientService } from '../../services/patient.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Patient} from '../../model/patient';
+import {PatientService} from '../../services/patient.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-patient-list',
@@ -15,7 +15,8 @@ export class PatientListComponent implements OnInit {
 
   constructor(
     private patientService: PatientService,
-    private router: Router) { }
+    private router: Router) {
+  }
 
   ngOnInit(): void {
     this.getPatientList();
@@ -41,9 +42,11 @@ export class PatientListComponent implements OnInit {
       next: data => {
         console.log(data);
         this.getPatientList();
-     },
-     error: error => {
-      console.log(error);}
+      },
+      error: error => {
+        console.log(error);
+        this.errorMessage = error.error.message;
+      }
     });
 
   }
@@ -63,7 +66,8 @@ export class PatientListComponent implements OnInit {
       },
       error: error => {
         console.log('Error while searching for patient by last name:', error);
-        this.errorMessage = `No patient exists in the database with this last name :{${this.searchLastName}}`;
+        // this.errorMessage = `No patient exists in the database with this last name :{${this.searchLastName}}`;
+        this.errorMessage = error.error.message;
       }
     });
   }

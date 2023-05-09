@@ -11,7 +11,7 @@
 label {
     margin-bottom: 10px;
 }
-.create-button {
+.create-button, .cancel-button {
     margin-top: 15px;
     margin-bottom: 10px;
 }
