@@ -15,6 +15,7 @@
                 <div class="mt-3 text text-center">
                     <button class="btn btn-info" [routerLink]="['/update-patient', patient.id]">Update</button>
                     <button class="btn btn-danger mx-2" (click)="deletePatientById(patient.id)">Delete</button>
+                  <button class="btn btn-success mx-2" (click)="generateReportByPatId(patient.id)">Generate Report</button>
                 </div>
             </div>
 

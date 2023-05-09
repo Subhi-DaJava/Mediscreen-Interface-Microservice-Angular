@@ -11,6 +11,7 @@ import { UpdateNoteComponent } from './note-components/update-note/update-note.c
 import { NoteDetailsPatidComponent } from './note-components/note-details-patid/note-details-patid.component';
 import { NoteDetailsLastnameComponent } from './note-components/note-details-lastname/note-details-lastname.component';
 import { AddNoteToPatientComponent } from './note-components/add-note-to-patient/add-note-to-patient.component';
+import {ReportComponent} from "./report-components/report/report.component";
 
 const routes: Routes = [
   { path: 'patients', component: PatientListComponent },
@@ -23,8 +24,9 @@ const routes: Routes = [
   { path: 'update-note/:id', component: UpdateNoteComponent },
   { path: 'note-details-patid/:patid', component: NoteDetailsPatidComponent },
   { path: 'note-details-lastname/:lastname', component: NoteDetailsLastnameComponent },
-  { path: 'add-node-to-patient/:patid', component: AddNoteToPatientComponent }
-  
+  { path: 'add-node-to-patient/:patid', component: AddNoteToPatientComponent },
+  { path: 'report/:patId', component: ReportComponent }
+
 ];
 
 @NgModule({

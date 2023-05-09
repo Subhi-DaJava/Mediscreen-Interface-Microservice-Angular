@@ -1,9 +1,10 @@
-import { NoteService } from 'src/app/services/note.service';
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Patient } from 'src/app/model/patient';
-import { PatientService } from 'src/app/services/patient.service';
-import { Note } from 'src/app/model/note';
+import {NoteService} from 'src/app/services/note.service';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Patient} from 'src/app/model/patient';
+import {PatientService} from 'src/app/services/patient.service';
+import {Note} from 'src/app/model/note';
+import {ReportService} from "../../services/report.service";
 
 @Component({
   selector: 'app-patient-details',
@@ -20,7 +21,8 @@ export class PatientDetailsComponent implements OnInit {
     private patientService: PatientService,
     private route: ActivatedRoute,
     private router: Router,
-    private noteService: NoteService) { }
+    private noteService: NoteService) {
+  }
 
   ngOnInit(): void {
     this.patient = new Patient();
@@ -68,6 +70,7 @@ export class PatientDetailsComponent implements OnInit {
   updateNoteById(noteId: string) {
     this.router.navigate(['/update-note', noteId]).then();
   }
+
   deleteNoteById(noteId: string) {
     this.noteService.deleteNoteById(noteId).subscribe({
       next: data => {
@@ -75,7 +78,7 @@ export class PatientDetailsComponent implements OnInit {
         window.location.reload();
         console.log(data);
       },
-      error : err => {
+      error: err => {
         console.log(err);
         this.errorMessage = err.toString();
       }
@@ -88,5 +91,9 @@ export class PatientDetailsComponent implements OnInit {
 
   goToPatientDetails(patientId: number) {
     this.router.navigate(['/patient-details', patientId]).then();
+  }
+
+  generateReportByPatId(patId: number) {
+    this.router.navigate(['report', patId]).then();
   }
 }

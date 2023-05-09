@@ -14,6 +14,7 @@ import { UpdateNoteComponent } from './note-components/update-note/update-note.c
 import { NoteDetailsLastnameComponent } from './note-components/note-details-lastname/note-details-lastname.component';
 import { NoteDetailsPatidComponent } from './note-components/note-details-patid/note-details-patid.component';
 import { AddNoteToPatientComponent } from './note-components/add-note-to-patient/add-note-to-patient.component';
+import { ReportComponent } from './report-components/report/report.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AddNoteToPatientComponent } from './note-components/add-note-to-patient
     UpdateNoteComponent,
     NoteDetailsPatidComponent,
     NoteDetailsLastnameComponent,
-    AddNoteToPatientComponent
+    AddNoteToPatientComponent,
+    ReportComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Patient } from './../model/patient';
+import { Patient } from '../model/patient';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class PatientService {
-  
+
   private readonly apiUrl = "http://localhost:8081/api";
 
   constructor(private http: HttpClient) { }
