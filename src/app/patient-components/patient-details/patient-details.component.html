@@ -32,8 +32,8 @@
           </thead>
           <tbody>
           <tr *ngFor="let note of notes">
-            <td>{{note.comment}}</td>
-            <td>{{note.createdAt }}</td>
+            <td style="white-space: pre-wrap;">{{note.comment}}</td> <!-- retour à la ligne par br-->
+            <td style="width: 120px;">{{note.createdAt}}</td>
             <td>
               <button (click)="updateNoteById(note.id)" class="btn btn-info"
                       style="margin-left: 3px;">Update

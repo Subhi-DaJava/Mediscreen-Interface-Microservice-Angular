@@ -13,9 +13,9 @@
 
     <div class="form-group">
       <label>Comment</label>
-      <textarea class="form-control" id="comment" [(ngModel)]="note.comment" name="comment"></textarea>
+      <textarea class="form-control" id="comment" [(ngModel)]="note.comment" name="comment" style="white-space: pre-wrap"></textarea>
     </div>
-
+    <h3>{{ note.comment }}</h3>
     <div class="form-group">
       <label>Consultation Date</label>
       <input type="date" class="form-control" id="createdAt" [(ngModel)]="note.createdAt" name="createdAt">

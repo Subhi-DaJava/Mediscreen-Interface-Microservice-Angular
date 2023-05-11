@@ -5,10 +5,10 @@
     <div class="form-group">
       <label>Add Your Comment</label>
       <textarea class="form-control" id="comment" [(ngModel)]="comment" name="comment"
-                placeholder="Enter your note..."></textarea>
+                placeholder="Enter your note..." style="white-space: pre-wrap;"></textarea>
     </div>
 
-    <div *ngIf="comment">{{this.comment}}</div>
+    <div *ngIf="comment">{{comment}}</div>
 
     <div *ngIf="errorMessage" class="alert alert-danger text-danger mt-2 fs-5">
       {{ errorMessage }}

@@ -11,11 +11,10 @@ import {Patient} from "../../model/patient";
   styleUrls: ['./add-note-to-patient.component.css']
 })
 export class AddNoteToPatientComponent implements OnInit {
-  comment!: string;
   patid!: number;
   notes!: Note[];
   errorMessage!: string;
-  note!: Note;
+  comment!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +31,6 @@ export class AddNoteToPatientComponent implements OnInit {
 
     this.noteService.addNoteToPatientByPatId(patientId, doctorComment).subscribe({
       next: noteByPatId => {
-        this.note = noteByPatId;
         console.log(noteByPatId);
         this.goToPatientDetails();
       },

@@ -1,5 +1,5 @@
 import { Note } from '../model/note';
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -7,10 +7,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class NoteService {
-
-  getPatientByLastName(searchByLastName: string) {
-    throw new Error('Method not implemented.');
-  }
 
   private apiUrl: string = 'http://localhost:8082/api/notes';
 
@@ -45,6 +41,10 @@ export class NoteService {
   }
 
   addNoteToPatientByPatId(patId: number, note: string): Observable<Note> {
-    return this.http.post<Note>(`${this.apiUrl}/${patId}?note=${note}`, {});
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })
+    };
+    const body = `note=${encodeURIComponent(note)}`;
+    return this.http.post<Note>(`${this.apiUrl}/${patId}`,body, httpOptions);
   }
 }

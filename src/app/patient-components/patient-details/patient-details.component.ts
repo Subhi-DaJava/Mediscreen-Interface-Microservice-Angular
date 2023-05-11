@@ -60,6 +60,7 @@ export class PatientDetailsComponent implements OnInit {
     this.noteService.getNotesByPatId(patId).subscribe({
       next: data => {
         this.notes = data;
+        console.log(data);
       },
       error: err => {
         console.log(err);
@@ -100,10 +101,6 @@ export class PatientDetailsComponent implements OnInit {
         this.errorMessage = err.error.message;
       }
     });
-  }
-
-  goToPatientDetails(patientId: number) {
-    this.router.navigate(['/patient-details', patientId]).then();
   }
 
   generateReportByPatId(patId: number) {

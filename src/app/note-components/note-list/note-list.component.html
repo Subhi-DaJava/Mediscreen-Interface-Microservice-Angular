@@ -34,7 +34,7 @@
   <tbody>
   <tr *ngFor="let note of notes">
     <td>{{note.patLastName}}</td>
-    <td>{{note.comment}}</td>
+    <td style="white-space: pre-wrap">{{note.comment}}</td>
     <td>
       <button (click)="updateNoteById(note.id)" class="btn btn-info" style="margin-left: 3px;">Update</button>
     </td>
