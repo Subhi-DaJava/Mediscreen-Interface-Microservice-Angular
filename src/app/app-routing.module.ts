@@ -13,6 +13,7 @@ import { NoteDetailsLastnameComponent } from './note-components/note-details-las
 import { AddNoteToPatientComponent } from './note-components/add-note-to-patient/add-note-to-patient.component';
 import {ReportComponent} from "./report-components/report/report.component";
 import {CreateNoteByPatIdComponent} from "./note-components/create-note-by-pat-id/create-note-by-pat-id.component";
+import {ReportByNameComponent} from "./report-components/report-by-name/report-by-name.component";
 
 const routes: Routes = [
   { path: 'patients', component: PatientListComponent },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'note-details-lastname/:lastname', component: NoteDetailsLastnameComponent },
   { path: 'add-node-to-patient/:patid', component: AddNoteToPatientComponent },
   { path: 'report/:patId', component: ReportComponent },
-  { path: 'create-note-by-pat-id/:patId', component: CreateNoteByPatIdComponent}
+  { path: 'create-note-by-pat-id/:patId', component: CreateNoteByPatIdComponent},
+  { path: 'report-by-name/:patName', component: ReportByNameComponent },
 
 ];
 

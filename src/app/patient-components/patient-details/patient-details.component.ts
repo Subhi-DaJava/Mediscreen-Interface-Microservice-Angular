@@ -106,4 +106,8 @@ export class PatientDetailsComponent implements OnInit {
   generateReportByPatId(patId: number) {
     this.router.navigate(['report', patId]).then();
   }
+
+  generateReportByPatName(name: string) {
+    this.router.navigate(['report-by-name', name]).then()
+}
 }

@@ -7,7 +7,9 @@
       <div>
         <div><label>Patient ID:</label><b style="padding-left: 10px;">{{patient.id}}</b></div>
         <div><label>First Name:</label><b style="padding-left: 10px;">{{patient.firstName}}</b></div>
-        <div><label>Last Name:</label><b style="padding-left: 10px;">{{patient.lastName}}</b></div>
+        <div><label>Last Name:</label>
+          <b style="padding-left: 10px;" (click)="generateReportByPatName(patient.lastName)"><button class="btn btn-success text-white fs-4">{{patient.lastName}}</button>
+          </b></div>
         <div><label>Date Of Birth :</label><b style="padding-left: 10px;">{{patient.dateOfBirth}}</b></div>
         <div><label>Gender:</label><b style="padding-left: 10px;">{{patient.sex}}</b></div>
         <div><label>Phone Number:</label><b style="padding-left: 10px;">{{patient.phoneNumber}}</b></div>

@@ -2,14 +2,15 @@ import { Note } from '../model/note';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class NoteService {
 
-  private apiUrl: string = 'http://localhost:8082/api/notes';
 
+  private apiUrl: string= environment.NoteApiUrl;
   constructor(private http: HttpClient) { }
 
   getAllNotes(): Observable<Note[]> {

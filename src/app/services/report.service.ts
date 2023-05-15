@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Report} from "../model/report";
 import {Observable} from "rxjs";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,16 @@ import {Observable} from "rxjs";
 export class ReportService {
   report!: Report;
 
-  private readonly apiUrl = "http://localhost:8080/report";
-  //private readonly apiUrlPatient = "http://localhost:8081//api/patients";
-  //private readonly apiUrlNote = "http://localhost:8082/api/notes/by-patId";
+
+  private apiUrl: string = environment.ReportApiUrl;
 
   constructor(private http: HttpClient) { }
 
-  generateReportByPatId(patientId: number): Observable<Report> {
-    return this.http.get<Report>(`${this.apiUrl}/by-id/${patientId}`);
+  generateReportByPatId(patId: number): Observable<Report> {
+    return this.http.post<Report>(`${this.apiUrl}/id?patId=${patId}`, {});
   }
 
+  generateReportByPatName(familyName: string): Observable<Report> {
+    return this.http.post<Report>(`${this.apiUrl}/familyName?familyName=${familyName}`, {});
+  }
 }
