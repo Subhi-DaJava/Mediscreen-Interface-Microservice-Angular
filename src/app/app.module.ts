@@ -9,7 +9,6 @@ import { CreatePatientComponent } from './patient-components/create-patient/crea
 import { UpdatePatientComponent } from './patient-components/update-patient/update-patient.component';
 import { PatientDetailsComponent } from './patient-components/patient-details/patient-details.component';
 import { NoteListComponent } from './note-components/note-list/note-list.component';
-import { CreateNoteComponent } from './note-components/create-note/create-note.component';
 import { UpdateNoteComponent } from './note-components/update-note/update-note.component';
 import { NoteDetailsLastnameComponent } from './note-components/note-details-lastname/note-details-lastname.component';
 import { NoteDetailsPatidComponent } from './note-components/note-details-patid/note-details-patid.component';
@@ -26,7 +25,6 @@ import { ReportByNameComponent } from './report-components/report-by-name/report
     UpdatePatientComponent,
     PatientDetailsComponent,
     NoteListComponent,
-    CreateNoteComponent,
     UpdateNoteComponent,
     NoteDetailsPatidComponent,
     NoteDetailsLastnameComponent,

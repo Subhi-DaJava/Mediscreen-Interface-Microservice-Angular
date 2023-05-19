@@ -34,10 +34,14 @@ export class PatientListComponent implements OnInit {
   }
 
   updatePatient(id: number) {
-    this.router.navigate(['update-patient', id])
+    this.router.navigate(['update-patient', id]).then();
   }
 
   deletePatient(id: number) {
+    const confirmDelete = confirm('Are you sure you want to delete this Patient?');
+    if (!confirmDelete) {
+      return;
+    }
     this.patientService.deleteById(id).subscribe({
       next: data => {
         console.log(data);
@@ -66,7 +70,6 @@ export class PatientListComponent implements OnInit {
       },
       error: error => {
         console.log('Error while searching for patient by last name:', error);
-        // this.errorMessage = `No patient exists in the database with this last name :{${this.searchLastName}}`;
         this.errorMessage = error.error.message;
       }
     });

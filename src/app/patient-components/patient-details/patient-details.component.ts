@@ -4,7 +4,6 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Patient} from 'src/app/model/patient';
 import {PatientService} from 'src/app/services/patient.service';
 import {Note} from 'src/app/model/note';
-import {ReportService} from "../../services/report.service";
 
 @Component({
   selector: 'app-patient-details',
@@ -44,6 +43,11 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   deletePatientById(id: number) {
+    const confirmDelete = confirm('Are you sure you want to delete this Patient?');
+    if (!confirmDelete) {
+      return;
+    }
+
     this.patientService.deleteById(id).subscribe({
       next: data => {
         console.log(data);
@@ -74,6 +78,10 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   deleteNoteById(noteId: string) {
+    const confirmDelete = confirm('Are you sure you want to delete this Note?');
+    if (!confirmDelete) {
+      return;
+    }
     this.noteService.deleteNoteById(noteId).subscribe({
       next: data => {
         console.log(this.patient);
@@ -110,4 +118,5 @@ export class PatientDetailsComponent implements OnInit {
   generateReportByPatName(name: string) {
     this.router.navigate(['report-by-name', name]).then()
 }
+
 }

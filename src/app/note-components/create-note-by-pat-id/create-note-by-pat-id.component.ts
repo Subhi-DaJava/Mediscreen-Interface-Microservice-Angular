@@ -28,7 +28,6 @@ export class CreateNoteByPatIdComponent  implements OnInit{
   }
 
   ngSubmit() {
-    // new Note(note.getPatId(), note.getPatLastName(), note.getComment(), note.getCreatedAt()))
     this.note.patId = this.patId;
     this.note.patLastName = this.patient.lastName;
 

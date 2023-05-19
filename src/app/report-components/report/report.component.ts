@@ -12,7 +12,6 @@ export class ReportComponent implements OnInit {
   report!: Report
   patId!: number;
   errorMessage!: string;
-
   constructor(
     private reportService: ReportService,
     private router: Router,

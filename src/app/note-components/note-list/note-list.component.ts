@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Note } from 'src/app/model/note';
-import { NoteService } from 'src/app/services/note.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {Note} from 'src/app/model/note';
+import {NoteService} from 'src/app/services/note.service';
 
 @Component({
   selector: 'app-note-list',
@@ -12,12 +12,13 @@ export class NoteListComponent implements OnInit {
   notes!: Note[];
   searchByLastName: string = '';
   searchByPatientId!: number;
-  errorMessagePatid!: string;
+  errorMessagePatId!: string;
   errorMessageLastName!: string;
 
   constructor(
     private noteService: NoteService,
-    private router: Router) { }
+    private router: Router) {
+  }
 
   ngOnInit(): void {
     this.getAllNotes();
@@ -37,6 +38,10 @@ export class NoteListComponent implements OnInit {
   }
 
   deleteNoteById(id: string) {
+    const confirmDelete = confirm('Are you sure you want to delete this Note?');
+    if (!confirmDelete) {
+      return;
+    }
     this.noteService.deleteNoteById(id).subscribe({
       next: data => {
         console.log(data);
@@ -67,17 +72,15 @@ export class NoteListComponent implements OnInit {
         this.errorMessageLastName = err.error.message;
       }
     });
-
-
   }
 
   searchByPatId() {
     if (!this.searchByPatientId) {
-      this.errorMessagePatid = "Patient Id field is empty!";
+      this.errorMessagePatId = "Patient Id field is empty!";
       return;
     }
     if (!Number.isInteger(Number(this.searchByPatientId))) {
-      this.errorMessagePatid = "Patient Id should be an integer!";
+      this.errorMessagePatId = "Patient Id should be an integer!";
       return;
     }
 
@@ -86,12 +89,12 @@ export class NoteListComponent implements OnInit {
         if (data && data.length > 0) {
           this.router.navigate(['/note-details-patid', this.searchByPatientId]).then();
         } else {
-          this.errorMessagePatid = `No Note exists in the database with this patient id: {${this.searchByPatientId}}`;
+          this.errorMessagePatId = `No Note exists in the database with this patient id: {${this.searchByPatientId}}`;
         }
       },
       error: err => {
         console.log('Error while searching for patient by Last Name: ', err);
-        this.errorMessagePatid = err.error.message;
+        this.errorMessagePatId = err.error.message;
       }
     });
   }

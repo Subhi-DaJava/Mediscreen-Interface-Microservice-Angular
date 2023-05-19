@@ -1,7 +1,8 @@
-import { PatientService } from 'src/app/services/patient.service';
-import { Component, OnInit } from '@angular/core';
-import { Patient } from 'src/app/model/patient';
-import { ActivatedRoute, Router } from '@angular/router';
+import {PatientService} from 'src/app/services/patient.service';
+import {Component, OnInit} from '@angular/core';
+import {Patient} from 'src/app/model/patient';
+import {ActivatedRoute, Router} from '@angular/router';
+import {NoteService} from "../../services/note.service";
 
 @Component({
   selector: 'app-update-patient',
@@ -12,11 +13,14 @@ export class UpdatePatientComponent implements OnInit {
   patient: Patient = new Patient();
   id!: number;
   errorMessage!: string;
-  errorMessages!: string;
+  errorMessages!: string[];
+
   constructor(
     private patientService: PatientService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private noteService: NoteService) {
+  }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -38,8 +42,9 @@ export class UpdatePatientComponent implements OnInit {
   updatePatient() {
     this.patientService.updatePatientById(this.id, this.patient)
       .subscribe({
-        next: data => {
-          console.log(data);
+        next: updatedPatient => {
+          console.log(updatedPatient);
+          this.updateNotesLastName(updatedPatient.lastName);
           this.goToList();
         },
         error: error => {
@@ -56,5 +61,16 @@ export class UpdatePatientComponent implements OnInit {
 
   onSubmit() {
     this.updatePatient();
+  }
+
+  private updateNotesLastName(lastName: string) {
+    this.noteService.getNotesByPatId(this.id).subscribe({
+      next: notes => {
+        notes.forEach(note => {
+          note.patLastName = lastName;
+          this.noteService.updateNoteById(note.id, note).subscribe();
+        });
+      }
+    });
   }
 }
